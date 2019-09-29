@@ -1,0 +1,29 @@
+{
+  "name": "express-mysql",
+  "version": "0.1.0",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/time2hack/express-mysql.git"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "time2hack"
+  ],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/time2hack/express-mysql/issues"
+  },
+  "homepage": "https://github.com/time2hack/express-mysql#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql": "^2.17.1",
+    "nodejs-md5": "^1.1.0"
+  }
+}

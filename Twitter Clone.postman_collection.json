@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "78149020-40a3-4657-80a9-7683bdae2c78",
+		"name": "Twitter Clone",
+		"description": "This collection is created to help understand the Rest API creation on Node.js with Express and MySQL\n\nThe original article can be found here: https://time2hack.com/2019/09/creating-rest-api-in-node-js-with-express-and-mysql",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tweets",
+			"item": [
+				{
+					"name": "Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tweets/feed",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tweets",
+								"feed"
+							]
+						},
+						"description": "User's Feed"
+					},
+					"response": []
+				},
+				{
+					"name": "Tweet from Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tweets/10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tweets",
+								"10"
+							]
+						},
+						"description": "Tweet from User's Feed"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Logged in User Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User's Followers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/followers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"followers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Whom User is Following",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/following",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"following"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Follow new Friend",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user/following",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"following"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Settings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/settings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Settings",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "sms",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user/settings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed766847-6bde-48fa-9675-d2b1631814dc",
+						"exec": [
+							"",
+							"pm.test(\"Resposne has ID\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.not.eql(null);",
+							"});",
+							"pm.environment.set(\"user\", pm.response.json().id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "jim",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "jim",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "# Register New User\n---\n\n## Params\n\n`username`: `String`\n`password`: `String`\n\nReturns the new User's ID and Set's to Environment"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6297fe46-d7b5-49f6-982f-5b0e0f467cc3",
+						"exec": [
+							"",
+							"pm.test(\"Resposne has ID\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.not.eql(null);",
+							"});",
+							"pm.environment.set(\"user\", pm.response.json().id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "pankaj",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pankaj",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "# Login\n---\n\n## Params\n\n`username`: `String`\n`password`: `String`\n\nReturns the User's ID and Set's to Environment"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "363978da-cd5b-42e5-97e7-a8f9aab3fbd0",
+			"key": "user",
+			"value": "1",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
