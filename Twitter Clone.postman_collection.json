@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "78149020-40a3-4657-80a9-7683bdae2c78",
 		"name": "Twitter Clone",
-		"description": "This collection is created to help understand the Rest API creation on Node.js with Express and MySQL\n\nThe original article can be found here: https://time2hack.com/2019/09/creating-rest-api-in-node-js-with-express-and-mysql",
+		"description": "This collection is created to help understand the Rest API creation on Node.js with Express and MySQL\n\nThe original article can be found here: https://time2hack.com/2019/09/creating-rest-api-in-node-js-with-express-and-mysql/",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -223,12 +223,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "jim",
+							"value": "r_{{$randomUserName}}",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "jim",
+							"value": "random-password",
 							"type": "text"
 						}
 					]
@@ -241,18 +241,6 @@
 					"path": [
 						"auth",
 						"register"
-					],
-					"query": [
-						{
-							"key": "username",
-							"value": "",
-							"disabled": true
-						},
-						{
-							"key": "password",
-							"value": "",
-							"disabled": true
-						}
 					]
 				},
 				"description": "# Register New User\n---\n\n## Params\n\n`username`: `String`\n`password`: `String`\n\nReturns the new User's ID and Set's to Environment"
@@ -319,11 +307,45 @@
 			"response": []
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9f38fe7c-852d-47ea-94c0-a30a02fe80f1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fbd831b3-89ea-4af7-9e1c-b34bd57dba5e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
-			"id": "363978da-cd5b-42e5-97e7-a8f9aab3fbd0",
+			"id": "163f6187-2a19-4028-b6d8-ec8709bc560b",
+			"key": "url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"id": "974aa83a-3a22-483b-8363-e514a2742d5e",
 			"key": "user",
 			"value": "1",
+			"type": "string"
+		},
+		{
+			"id": "ddcb6d1f-4270-4364-bdcf-5e75ec9afeb4",
+			"key": "randomPassword",
+			"value": "random-password",
 			"type": "string"
 		}
 	],

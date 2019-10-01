@@ -8,4 +8,4 @@ module.exports = async (conn, q, params) => new Promise(
     resolve(result);
   }
   conn.query(q, params, handler);
-});
+}).catch(console.log);

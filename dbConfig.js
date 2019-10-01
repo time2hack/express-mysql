@@ -1,3 +1,7 @@
+const dotenv = require("dotenv")
+ 
+dotenv.config();
+
 // Get the Host from Environment or use default
 const host = process.env.DB_HOST || 'localhost';
 

@@ -5,19 +5,23 @@ const query = require('../helpers/query');
 const router = express.Router();
 const dbConfig = require('../dbConfig');
 
+const create = require('../crud/create');
+
 router.post('/register', async (req, res) => {
   const { username, password } = req.body;
   const conn = await connection(dbConfig).catch(e => {});
-  const user = await query(
+  const result = await create(
     conn,
-    `INSERT INTO USERS(username, password) VALUE(?, MD5(?));`,
-    [username, password]
+    'USERS',
+    ['username', 'password'],
+    [username, { toString: () => `MD5('${password}')`}]
   );
-  if (user.insertId) {
-    res.send(await query(conn, `SELECT id, username FROM USERS WHERE ID=?`, [user.insertId]))
-    return;
-  }
-  res.send({ id: null, username: null });
+
+  const [user = {}] = result;
+  res.send({
+    id: user.id || null,
+    username: user.username || null,
+  });
 });
 
 router.post('/login', async (req, res) => {
